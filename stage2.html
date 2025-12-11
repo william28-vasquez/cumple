@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>M</title>
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: 'Playfair Display', serif;
+    text-align:center;
+    color:white;
+}
+
+/* Fondo bosque mágico */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background: radial-gradient(circle at 50% 10%, #92e8ff, #1a4152, #0a1c25);
+    z-index:-2;
+}
+
+/* estrellas */
+.stars{
+    position:fixed;
+    inset:0;
+    background:
+        radial-gradient(white 1px, transparent 1px) 0 0/3px 3px,
+        radial-gradient(white 1px, transparent 1px) 30px 60px/4px 4px,
+        radial-gradient(white 1px, transparent 1px) 70px 20px/2px 2px;
+    opacity:0.5;
+}
+
+/* tarjeta */
+.card{
+    margin-top:12vh;
+    background:rgba(0,0,0,0.45);
+    padding:30px;
+    width:450px;
+    max-width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:20px;
+    backdrop-filter:blur(6px);
+    border:2px solid rgba(255,255,255,0.4);
+}
+
+/* velas */
+.velas{
+    display:flex;
+    justify-content:center;
+    gap:40px;
+    margin-top:20px;
+}
+
+.candle{
+    width:40px;
+    height:120px;
+    background:#fff6d8;
+    border-radius:8px;
+    position:relative;
+    cursor:pointer;
+    box-shadow:0 0 12px rgba(255,255,120,0.8);
+}
+
+.flame{
+    width:20px;
+    height:35px;
+    background:orange;
+    position:absolute;
+    top:-28px;
+    left:10px;
+    border-radius:50%;
+    box-shadow:0 0 20px orange;
+    animation:flicker .3s infinite alternate;
+}
+
+@keyframes flicker{
+    0%{transform:rotate(5deg);}
+    100%{transform:rotate(-5deg);}
+}
+
+/* botón */
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#7fe8ff;
+    display:none;
+}
+
+/* 🌹 Rosas cayendo */
+.rose {
+    position: fixed;
+    top: -10vh;
+    font-size: 32px;
+    animation: fallRose linear infinite;
+    pointer-events: none;
+}
+@keyframes fallRose {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:0.8; }
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="card">
+    <h2>Apaga las 3 velitas 🕯️✨</h2>
+    <p>Haz clic en cada una. Dios bendice cada deseo que guardas en tu corazón.</p>
+
+    <div class="velas">
+        <div class="candle" onclick="apagar(this)"><div class="flame"></div></div>
+        <div class="candle" onclick="apagar(this)"><div class="flame"></div></div>
+        <div class="candle" onclick="apagar(this)"><div class="flame"></div></div>
+    </div>
+
+    <button id="btn" onclick="location.href='stage3.html'">Continuar 💖</button>
+</div>
+
+<script>
+let apagadas = 0;
+
+function apagar(c){
+    let f = c.querySelector('.flame');
+    if(f){
+        f.remove();
+        apagadas++;
+    }
+    if(apagadas === 3){
+        document.getElementById('btn').style.display = "inline-block";
+    }
+}
+</script>
+
+<script>
+function createRoses(colorSet){
+    for(let i = 0; i < 25; i++){
+        let r = document.createElement("div");
+        r.classList.add("rose");
+        r.textContent = "🌹";
+        r.style.left = Math.random() * 100 + "vw";
+        r.style.animationDuration = (Math.random()*4 + 3) + "s";
+        r.style.filter = `hue-rotate(${colorSet}deg)`;
+        document.body.appendChild(r);
+    }
+}
+createRoses(200);
+</script>
+
+</body>
+</html>

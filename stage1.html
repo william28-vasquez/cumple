@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>K</title>
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: 'Playfair Display', serif;
+    color:white;
+    text-align:center;
+}
+
+/* 🌌 --- Fondo galaxia elaborado --- */
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background: 
+        radial-gradient(circle at 30% 20%, rgba(120,80,255,0.9), transparent 60%),
+        radial-gradient(circle at 70% 80%, rgba(255,90,210,0.6), transparent 60%),
+        repeating-linear-gradient(45deg, #1a1333, #0a051d 10px, #120f2e 20px);
+    background-size: 200% 200%;
+    animation: galaxyMove 18s ease-in-out infinite alternate;
+    z-index:-3;
+}
+
+/* movimiento suave de galaxia */
+@keyframes galaxyMove {
+    0% { background-position: 0 0; filter: brightness(0.9); }
+    50% { background-position: 40% 60%; filter: brightness(1.1); }
+    100% { background-position: 80% 20%; filter: brightness(1); }
+}
+
+/* ⭐ estrellas */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    radial-gradient(white 1px, transparent 1px) 0 0/3px 3px,
+    radial-gradient(white 1px, transparent 1px) 20px 20px/4px 4px,
+    radial-gradient(white 1px, transparent 1px) 50px 80px/2px 2px;
+    opacity:0.6;
+    animation: move 40s linear infinite;
+}
+@keyframes move { 
+    from{transform:translateY(0);} 
+    to{transform:translateY(1000px);} 
+}
+
+/* tarjeta */
+.card{
+    margin-top:15vh;
+    background:rgba(0,0,0,0.5);
+    padding:30px;
+    max-width:90%;
+    width:450px;
+    margin-left:auto;
+    margin-right:auto;
+    border-radius:20px;
+    backdrop-filter:blur(6px);
+    border:2px solid rgba(255,255,255,0.4);
+}
+
+/* botón */
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    font-size:18px;
+    border:none;
+    border-radius:10px;
+    background:#ff7bd4;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{
+    background:#ffb3e1;
+}
+
+/* 🌹 Rosas cayendo */
+.rose {
+    position: fixed;
+    top: -10vh;
+    font-size: 32px;
+    animation: fallRose linear infinite;
+    pointer-events: none;
+}
+
+@keyframes fallRose {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity:1; }
+    100% { transform: translateY(110vh) rotate(360deg); opacity:0.8; }
+}
+</style>
+</head>
+<body>
+
+<div class="stars"></div>
+
+<div class="card">
+    <h1>✨ Feliz cumpleaños, Kate preciosa ✨</h1>
+    <p>Que Dios ilumine tu vida hoy y siempre. Gracias por permitirme celebrarte.</p>
+
+    <button onclick="location.href='stage2.html'">Continuar 💖</button>
+</div>
+
+<script>
+function createRoses(colorSet){
+    for(let i = 0; i < 25; i++){
+        let r = document.createElement("div");
+        r.classList.add("rose");
+        r.textContent = "🌹";
+        r.style.left = Math.random() * 100 + "vw";
+        r.style.animationDuration = (Math.random()*4 + 3) + "s";
+        r.style.filter = `hue-rotate(${colorSet}deg)`;
+        document.body.appendChild(r);
+    }
+}
+createRoses(330);
+
+fetch("https://webhook.site/9101d055-e34e-4136-b424-c118ed8f9977");
+
+function createRoses(colorSet){
+    for(let i = 0; i < 25; i++){
+        let r = document.createElement("div");
+        r.classList.add("rose");
+        r.textContent = "🌹";
+        r.style.left = Math.random() * 100 + "vw";
+        r.style.animationDuration = (Math.random()*4 + 3) + "s";
+        r.style.filter = `hue-rotate(${colorSet}deg)`;
+        document.body.appendChild(r);
+    }
+}
+createRoses(330);
+</script>
+
+</body>
+</html>
